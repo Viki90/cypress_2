@@ -15,13 +15,17 @@ describe("register POM", () => {
     cy.visit("/register");
   });
 
-  it("register with valid data", () => {
+  it("register with existing email adress", () => {
     registerPage.register(
       randomUser.randomFirstName,
       randomUser.randomLastName,
       randomUser.randomEmail,
       randomUser.randomPassword
     );
+    registerPage.alertMessage.should('be.visible');
+    
     cy.url().should("not.include", "/register");
   });
+
+ 
 });

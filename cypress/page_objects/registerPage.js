@@ -26,6 +26,10 @@ class RegisterPage {
     get submitButton() {
       return cy.get("button");
     }
+
+    get alertMessage() {
+      cy.get('.alert');
+    }
   
     register(firstName, lastName, email, password) {
       this.firstNameInput.type(firstName);
@@ -36,6 +40,7 @@ class RegisterPage {
       this.checkboxTOS.check();
       this.submitButton.click();
     }
+
   }
   
   export const registerPage = new RegisterPage();
