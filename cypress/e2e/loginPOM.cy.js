@@ -10,7 +10,7 @@ describe("login test", () => {
     });
 
     it("login with invalid credentials", () => {
-        loginPage.login("pogresa@email.com", "123");
+        loginPage.login("viki.verebes90@gmail.com", "12341234");
         loginPage.alertMessage.should("be.visible")
             .and("have.text", "Bad Credentials")
             .and("have.css", "background-color", "rgb(248, 215, 218)");
