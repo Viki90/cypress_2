@@ -24,13 +24,13 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("loginViaBE", (emailParam, passwordParam) => {
+Cypress.Commands.add("loginViaBE", () => {
     cy.request(
         "POST",
         "https://gallery-api.vivifyideas.com/api/auth/login",
         {
-            email: emailParam,
-            password: passwordParam
+            email: Cypress.env("userEmail"),
+            password: Cypress.env("userPassword")
         }
     ).its('body').then(response => {
         console.log("RESPONSE", response);
