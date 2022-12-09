@@ -18,17 +18,7 @@ describe("login test", () => {
     // });
 
     it("login via BE", () => {
-        cy.request(
-            "POST",
-            "https://gallery-api.vivifyideas.com/api/auth/login",
-            {
-                email:"viki.verebes90@gmail.com",
-                password:"12341234"
-            }
-        ).its('body').then(response => {
-            console.log("RESPONSE", response);
-            window.localStorage.setItem("token", response.access_token);
-        });
+        cy.loginViaBE("viki.verebes90@gmail.com", "12341234");
         cy.visit("/create");
     });
 });
