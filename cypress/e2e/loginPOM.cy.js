@@ -9,6 +9,21 @@ describe("login test", () => {
         loginPage.loginHeading.should('be.visible').and('have.text', 'Please login');
     });
 
+    it.only("login with valid credentials", () => {
+        cy.intercept(
+            "POST",
+            "https://gallery-api.vivifyideas.com/api/auth/login",
+        ).as("successfullLogin");
+
+        loginPage.login(Cypress.env("userEmail"), Cypress.env("userPassword"));
+        cy.wait("@successfullLogin").then(interception => {
+            console.log("interception", interception);
+            expect(interception.response.statusCode).eq(200);
+            expect(interception.response.body.access_token).to.exist;
+        });
+         cy.url().should("not.include", "/login");
+    });
+
     // it("login with invalid credentials", () => {
     //     loginPage.login("viki.verebes90@gmail.com", "12341234");
     //     loginPage.alertMessage.should("be.visible")
