@@ -18,7 +18,7 @@ describe("login test", () => {
     // });
 
     it("login via BE", () => {
-        cy.loginViaBE("viki.verebes90@gmail.com", "12341234");
+        cy.loginViaBE();
         cy.visit("/create");
     });
 });
